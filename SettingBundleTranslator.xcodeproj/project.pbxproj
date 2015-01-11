@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		267958271A630770007B819C /* SBSettingItemSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 267958261A630770007B819C /* SBSettingItemSlider.m */; };
 		2683C99C1A62E7F300F1C52B /* SBSettingItemMultiValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */; };
 		2683C9A21A62EA0400F1C52B /* PickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C99F1A62EA0400F1C52B /* PickerInputTableViewCell.m */; };
 		2683C9A31A62EA0400F1C52B /* SimplePickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C9A11A62EA0400F1C52B /* SimplePickerInputTableViewCell.m */; };
@@ -24,7 +25,6 @@
 		26CF9B851A62852C00ABDD0B /* SBSettingItemGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B841A62852C00ABDD0B /* SBSettingItemGroup.m */; };
 		26CF9B881A62917500ABDD0B /* SBSettingItemTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B871A62917500ABDD0B /* SBSettingItemTextField.m */; };
 		26CF9B8C1A6295F600ABDD0B /* SBSettingItemToggleSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B8B1A6295F600ABDD0B /* SBSettingItemToggleSwitch.m */; };
-		26CF9B8F1A62988100ABDD0B /* SBSettingItemSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B8E1A62988100ABDD0B /* SBSettingItemSlider.m */; };
 		26CF9B921A62A84100ABDD0B /* SBSettingGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B911A62A84100ABDD0B /* SBSettingGroup.m */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		267958251A630770007B819C /* SBSettingItemSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemSlider.h; path = SBTranslator/SBSettingItems/SBSettingItemSlider.h; sourceTree = "<group>"; };
+		267958261A630770007B819C /* SBSettingItemSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemSlider.m; path = SBTranslator/SBSettingItems/SBSettingItemSlider.m; sourceTree = "<group>"; };
 		2683C99A1A62E7F300F1C52B /* SBSettingItemMultiValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemMultiValue.h; path = SBTranslator/SBSettingItems/SBSettingItemMultiValue.h; sourceTree = "<group>"; };
 		2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemMultiValue.m; path = SBTranslator/SBSettingItems/SBSettingItemMultiValue.m; sourceTree = "<group>"; };
 		2683C99E1A62EA0400F1C52B /* PickerInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerInputTableViewCell.h; sourceTree = "<group>"; };
@@ -71,8 +73,6 @@
 		26CF9B871A62917500ABDD0B /* SBSettingItemTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemTextField.m; path = SBTranslator/SBSettingItems/SBSettingItemTextField.m; sourceTree = "<group>"; };
 		26CF9B8A1A6295F600ABDD0B /* SBSettingItemToggleSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemToggleSwitch.h; path = SBTranslator/SBSettingItems/SBSettingItemToggleSwitch.h; sourceTree = "<group>"; };
 		26CF9B8B1A6295F600ABDD0B /* SBSettingItemToggleSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemToggleSwitch.m; path = SBTranslator/SBSettingItems/SBSettingItemToggleSwitch.m; sourceTree = "<group>"; };
-		26CF9B8D1A62988100ABDD0B /* SBSettingItemSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSettingItemSlider.h; sourceTree = "<group>"; };
-		26CF9B8E1A62988100ABDD0B /* SBSettingItemSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSettingItemSlider.m; sourceTree = "<group>"; };
 		26CF9B901A62A84100ABDD0B /* SBSettingGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingGroup.h; path = SBTranslator/SBSettingGroup.h; sourceTree = "<group>"; };
 		26CF9B911A62A84100ABDD0B /* SBSettingGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingGroup.m; path = SBTranslator/SBSettingGroup.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,14 +188,14 @@
 			children = (
 				26CF9B801A62843F00ABDD0B /* SBSettingItem.h */,
 				26CF9B811A62843F00ABDD0B /* SBSettingItem.m */,
-				26CF9B861A62917500ABDD0B /* SBSettingItemTextField.h */,
-				26CF9B871A62917500ABDD0B /* SBSettingItemTextField.m */,
 				26CF9B831A62852C00ABDD0B /* SBSettingItemGroup.h */,
 				26CF9B841A62852C00ABDD0B /* SBSettingItemGroup.m */,
+				267958251A630770007B819C /* SBSettingItemSlider.h */,
+				267958261A630770007B819C /* SBSettingItemSlider.m */,
+				26CF9B861A62917500ABDD0B /* SBSettingItemTextField.h */,
+				26CF9B871A62917500ABDD0B /* SBSettingItemTextField.m */,
 				26CF9B8A1A6295F600ABDD0B /* SBSettingItemToggleSwitch.h */,
 				26CF9B8B1A6295F600ABDD0B /* SBSettingItemToggleSwitch.m */,
-				26CF9B8D1A62988100ABDD0B /* SBSettingItemSlider.h */,
-				26CF9B8E1A62988100ABDD0B /* SBSettingItemSlider.m */,
 				2683C99A1A62E7F300F1C52B /* SBSettingItemMultiValue.h */,
 				2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */,
 			);
@@ -308,9 +308,9 @@
 				26CF9B821A62843F00ABDD0B /* SBSettingItem.m in Sources */,
 				26CF9B5A1A627C0A00ABDD0B /* ViewController.m in Sources */,
 				2683C9A31A62EA0400F1C52B /* SimplePickerInputTableViewCell.m in Sources */,
-				26CF9B8F1A62988100ABDD0B /* SBSettingItemSlider.m in Sources */,
 				26CF9B7E1A627DD600ABDD0B /* SBTranslator.m in Sources */,
 				26CF9B571A627C0A00ABDD0B /* AppDelegate.m in Sources */,
+				267958271A630770007B819C /* SBSettingItemSlider.m in Sources */,
 				2683C99C1A62E7F300F1C52B /* SBSettingItemMultiValue.m in Sources */,
 				26CF9B921A62A84100ABDD0B /* SBSettingGroup.m in Sources */,
 				26CF9B541A627C0A00ABDD0B /* main.m in Sources */,
