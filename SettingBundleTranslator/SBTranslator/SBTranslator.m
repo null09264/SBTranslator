@@ -7,8 +7,6 @@
 //
 
 #import "SBTranslator.h"
-#import "SBSettingItem.h"
-#import "SBSettingGroup.h"
 
 @interface SBTranslator()
 
@@ -63,6 +61,11 @@
 - (NSInteger) getNumberOfRowForGroupAtIndex: (NSInteger) index {
     SBSettingGroup *group = [self.settingGroups objectAtIndex:index];
     return group.otherItems.count;
+}
+
+- (SBSettingItem*) getItemAtIndexPath: (NSIndexPath *)indexPath {
+    SBSettingGroup *group = [self.settingGroups objectAtIndex:indexPath.section];
+    return [group.otherItems objectAtIndex:indexPath.row];
 }
 
 @end

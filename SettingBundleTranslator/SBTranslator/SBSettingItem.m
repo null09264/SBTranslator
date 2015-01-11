@@ -12,6 +12,7 @@
 #import "SBSettingItemToggleSwitch.h"
 #import "SBSettingItemSlider.h"
 
+
 @implementation SBSettingItem
 
 - (instancetype) initWithDictionary:(NSDictionary *)preferenceDictionary {

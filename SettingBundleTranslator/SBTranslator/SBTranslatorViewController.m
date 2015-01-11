@@ -7,6 +7,10 @@
 //
 
 #import "SBTranslatorViewController.h"
+#import "SBSettingItemGroup.h"
+#import "SBSettingItemTextField.h"
+#import "SBSettingItemToggleSwitch.h"
+#import "SBSettingItemSlider.h"
 
 @interface SBTranslatorViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -61,11 +65,14 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseID"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
-    return cell;
+    SBSettingItem *item = [self.settingBundleTranslator getItemAtIndexPath:indexPath];
+    return [self getCellWithItem:item];
 }
 
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:section];
+    return group.groupItem.title;
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -110,5 +117,66 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (UITableViewCell *) getCellWithItem: (SBSettingItem *)item {
+    if ([item isTextFieldItem]) {
+        return [self getCellWithTextFieldItem:(SBSettingItemTextField *)item];
+    } else if ([item isToggleSwitchItem]) {
+        return [self getCellWithToggleSwitchItem:(SBSettingItemToggleSwitch *)item];
+    } else if ([item isSliderItem]) {
+        return [self getCellWithSliderItem:(SBSettingItemSlider *)item];
+    } else {
+        return [self getDefaultCell];
+    }
+}
+
+- (UITableViewCell *) getCellWithTextFieldItem: (SBSettingItemTextField *)item {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", item.title];
+    return cell;
+}
+
+- (UITableViewCell *) getCellWithToggleSwitchItem: (SBSettingItemToggleSwitch *)item {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", item.title];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UISwitch *toggleSwitch = [[UISwitch alloc]init];
+    [toggleSwitch addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
+    cell.accessoryView = toggleSwitch;
+    return cell;
+}
+
+- (UITableViewCell *) getCellWithSliderItem: (SBSettingItemSlider *)item {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UISlider *slider = [[UISlider alloc]init];
+    slider.bounds = CGRectMake(0, 0, cell.contentView.bounds.size.width - 20, slider.bounds.size.height);
+    slider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
+    slider.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    slider.minimumValue = item.minimumValue;
+    slider.maximumValue = item.maximumValue;
+    slider.minimumValueImage = [UIImage imageNamed:item.minimumValueImage];
+    slider.maximumValueImage = [UIImage imageNamed:item.maximumValueImage];
+    [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [cell.contentView addSubview:slider];
+    return cell;
+}
+
+- (UITableViewCell *) getDefaultCell {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    return cell;
+}
+
+- (void) switchValueChanged: (UISwitch *) sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) sender.superview];
+    NSLog(@"switch: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+}
+
+- (void) sliderValueChanged: (UISlider *) sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) sender.superview.superview];
+    NSLog(@"slider: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+}
 
 @end

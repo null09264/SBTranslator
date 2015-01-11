@@ -5,6 +5,12 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Group One</string>
+		</dict>
+		<dict>
 			<key>AutocapitalizationType</key>
 			<string>None</string>
 			<key>AutocorrectionType</key>
@@ -58,9 +64,9 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string></string>
+			<string>Name</string>
 			<key>Key</key>
-			<string></string>
+			<string>name</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

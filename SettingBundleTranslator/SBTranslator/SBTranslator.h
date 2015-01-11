@@ -6,7 +6,9 @@
 //  Copyright (c) 2015年 NULL. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "SBSettingItem.h"
+#import "SBSettingGroup.h"
 
 @interface SBTranslator : NSObject
 
@@ -15,5 +17,5 @@
 -(instancetype) init;
 - (NSInteger) getNumberOfGroups;
 - (NSInteger) getNumberOfRowForGroupAtIndex: (NSInteger) index;
-
+- (SBSettingItem*) getItemAtIndexPath: (NSIndexPath *)indexPath;
 @end
