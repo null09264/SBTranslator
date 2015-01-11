@@ -18,4 +18,7 @@
 - (NSInteger) getNumberOfGroups;
 - (NSInteger) getNumberOfRowForGroupAtIndex: (NSInteger) index;
 - (SBSettingItem*) getItemAtIndexPath: (NSIndexPath *)indexPath;
+
++ (void)registerDefaultsFromSettingsBundle;
+
 @end

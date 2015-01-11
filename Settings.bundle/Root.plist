@@ -16,7 +16,7 @@
 			<key>AutocorrectionType</key>
 			<string>No</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>OK</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>Key</key>
@@ -63,6 +63,8 @@
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<string>default</string>
 			<key>Title</key>
 			<string>Name</string>
 			<key>Key</key>
@@ -74,9 +76,9 @@
 			<key>Title</key>
 			<string>MultiValueSelector</string>
 			<key>Key</key>
-			<string></string>
+			<string>multi_value</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>2</string>
 			<key>Titles</key>
 			<array>
 				<string>t1</string>

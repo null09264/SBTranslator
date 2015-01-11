@@ -29,14 +29,13 @@
     self = [super init];
     
     if (self) {
+        self.settingBundleTranslator = [[SBTranslator alloc]init];
+        [SBTranslator registerDefaultsFromSettingsBundle];
+        
         self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         [self.view addSubview:self.tableView];
-        
-        self.settingBundleTranslator = [[SBTranslator alloc]init];
-        NSLog(@"%@", self.settingBundleTranslator.settingGroups);
-
     }
     
     return self;
@@ -147,7 +146,7 @@
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(cell.contentView.bounds.size.width * 0.3 + 10, 0, cell.contentView.frame.size.width * 0.7 - 15, cell.contentView.frame.size.height)];
     textField.autocapitalizationType = item.autocapitalizationType;
     textField.autocorrectionType = item.autocorrectionType;
-    textField.text = item.defaultValue;
+    textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:item.key];
     textField.keyboardType = item.keyboardType;
     textField.delegate = self;
     [cell.contentView addSubview:textField];
@@ -160,6 +159,7 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@", item.title];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     UISwitch *toggleSwitch = [[UISwitch alloc]init];
+    [toggleSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:item.key] animated:NO];
     [toggleSwitch addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
     cell.accessoryView = toggleSwitch;
     return cell;
@@ -173,6 +173,7 @@
     slider.bounds = CGRectMake(0, 0, cell.contentView.bounds.size.width - 20, slider.bounds.size.height);
     slider.center = CGPointMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds));
     slider.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    slider.value = [[NSUserDefaults standardUserDefaults] doubleForKey:item.key];
     slider.minimumValue = item.minimumValue;
     slider.maximumValue = item.maximumValue;
     slider.minimumValueImage = [UIImage imageNamed:item.minimumValueImage];
@@ -186,7 +187,11 @@
     SimplePickerInputTableViewCell *cell = [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     cell.textLabel.text = item.title;
     cell.values = item.titles;
+    cell.delegate = self;
+    NSLog(@"key: %@", item.key);
+    NSLog(@"value: %@", [[NSUserDefaults standardUserDefaults] stringForKey:item.key]);
     
+    cell.value = [item.titles objectAtIndex:[item.values indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:item.key]]];
     return cell;
 }
 
@@ -217,7 +222,7 @@
 #pragma SimplePickerInputTableViewCell Delegate
 - (void)tableViewCell:(SimplePickerInputTableViewCell *)cell didEndEditingWithValue:(NSString *)value {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    NSLog(@"slider: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+    NSLog(@"multiValue: section: %ld --- row: %ld", indexPath.section, indexPath.row);
 }
 
 @end

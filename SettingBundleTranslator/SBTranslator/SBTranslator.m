@@ -19,7 +19,6 @@
     
     if (self) {
         [self updateSettingItems];
-        NSLog(@"%ld groups", [self getNumberOfGroups]);
     }
     
     return self;
@@ -28,9 +27,7 @@
 - (void) updateSettingItems {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings.bundle/Root" ofType:@"plist"];
     NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    
     NSLog(@"%@", settings);
-    
     self.settingGroups = [self getItemsFromDictionaryArray:[settings objectForKey:@"PreferenceSpecifiers"]];
 }
 
@@ -69,6 +66,26 @@
 - (SBSettingItem*) getItemAtIndexPath: (NSIndexPath *)indexPath {
     SBSettingGroup *group = [self.settingGroups objectAtIndex:indexPath.section];
     return [group.otherItems objectAtIndex:indexPath.row];
+}
+
++ (void)registerDefaultsFromSettingsBundle {
+    NSString *settingsBundle=[[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+    if (!settingsBundle) {
+        NSLog(@"Could not find Settings.bundle");
+        return;
+    }
+    
+    NSDictionary *settings=[NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+    NSArray *preferences=[settings objectForKey:@"PreferenceSpecifiers"];
+    
+    NSMutableDictionary *defaultsToRegister=[[NSMutableDictionary alloc] initWithCapacity:[preferences count]];
+    for(NSDictionary *prefSpecification in preferences) {
+        NSString *key=[prefSpecification objectForKey:@"Key"];
+        if(key) {
+            [defaultsToRegister setObject:[prefSpecification objectForKey:@"DefaultValue"] forKey:key];
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
 }
 
 @end
