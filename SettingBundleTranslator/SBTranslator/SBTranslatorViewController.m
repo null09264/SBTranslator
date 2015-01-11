@@ -43,6 +43,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adjustLayoutWithKeyboardFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shrinkLayoutWithKeyboardFrame:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandLayoutWithKeyboardFrame:) name:UIKeyboardWillHideNotification object:nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -143,7 +146,8 @@
     titleLabel.text = item.title;
     [cell.contentView addSubview:titleLabel];
     
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(cell.contentView.bounds.size.width * 0.3 + 10, 0, cell.contentView.frame.size.width * 0.7 - 15, cell.contentView.frame.size.height)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(cell.contentView.bounds.size.width * 0.3 + 10, 0, cell.contentView.frame.size.width * 0.7 - 25, cell.contentView.frame.size.height)];
+    textField.textAlignment = NSTextAlignmentRight;
     textField.autocapitalizationType = item.autocapitalizationType;
     textField.autocorrectionType = item.autocorrectionType;
     textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:item.key];
@@ -197,6 +201,9 @@
     return cell;
 }
 
+
+#pragma value change responding methods
+
 - (void) switchValueChanged: (UISwitch *) sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) sender.superview];
     SBSettingItemToggleSwitch *item = (SBSettingItemToggleSwitch *)[self.settingBundleTranslator getItemAtIndexPath:indexPath];
@@ -232,4 +239,52 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+
+//keyboard observer
+- (void) adjustLayoutWithKeyboardFrame:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int keyboardHeight = keyboardRect.size.height;
+    
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:[curve intValue]];
+        self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight);
+    }];
+    
+}
+
+- (void) shrinkLayoutWithKeyboardFrame:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int keyboardHeight = keyboardRect.size.height;
+    
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:[curve intValue]];
+        self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight);
+    }];
+    
+}
+
+- (void) expandLayoutWithKeyboardFrame:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:[curve intValue]];
+        self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+    
+}
 @end
