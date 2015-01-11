@@ -188,9 +188,6 @@
     cell.textLabel.text = item.title;
     cell.values = item.titles;
     cell.delegate = self;
-    NSLog(@"key: %@", item.key);
-    NSLog(@"value: %@", [[NSUserDefaults standardUserDefaults] stringForKey:item.key]);
-    
     cell.value = [item.titles objectAtIndex:[item.values indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:item.key]]];
     return cell;
 }
@@ -202,27 +199,37 @@
 
 - (void) switchValueChanged: (UISwitch *) sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) sender.superview];
-    NSLog(@"switch: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+    SBSettingItemToggleSwitch *item = (SBSettingItemToggleSwitch *)[self.settingBundleTranslator getItemAtIndexPath:indexPath];
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:item.key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void) sliderValueChanged: (UISlider *) sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) sender.superview.superview];
-    NSLog(@"slider: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+    SBSettingItemSlider *item = (SBSettingItemSlider *)[self.settingBundleTranslator getItemAtIndexPath:indexPath];
+    [[NSUserDefaults standardUserDefaults] setFloat:sender.value forKey:item.key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
 }
 
 #pragma UITextField Delegate
 -(BOOL) textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) textField.superview.superview];
-    NSLog(@"textField: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+    SBSettingItemTextField *item = (SBSettingItemTextField *)[self.settingBundleTranslator getItemAtIndexPath:indexPath];
+    [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:item.key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
 }
 
 
 #pragma SimplePickerInputTableViewCell Delegate
-- (void)tableViewCell:(SimplePickerInputTableViewCell *)cell didEndEditingWithValue:(NSString *)value {
+- (void)tableViewCell:(SimplePickerInputTableViewCell *)cell didEndEditingWithValue:(NSString *)title {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    NSLog(@"multiValue: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+    SBSettingItemMultiValue *item = (SBSettingItemMultiValue *)[self.settingBundleTranslator getItemAtIndexPath:indexPath];
+    NSString *value = [item.values objectAtIndex:[item.titles indexOfObject:title]];
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:item.key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
