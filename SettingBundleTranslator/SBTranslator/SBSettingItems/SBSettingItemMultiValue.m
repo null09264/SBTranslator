@@ -2,8 +2,8 @@
 //  SBSettingItemMultiValue.m
 //  SettingBundleTranslator
 //
-//  Created by Justus on 12/01/15.
-//  Copyright (c) 2015年 NULL. All rights reserved.
+//  Created by Wang Jinghan on 12/01/15.
+//  Copyright (c) 2015 NULL. All rights reserved.
 //
 
 #import "SBSettingItemMultiValue.h"
