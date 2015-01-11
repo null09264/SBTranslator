@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2683C99C1A62E7F300F1C52B /* SBSettingItemMultiValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */; };
+		2683C9A21A62EA0400F1C52B /* PickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C99F1A62EA0400F1C52B /* PickerInputTableViewCell.m */; };
+		2683C9A31A62EA0400F1C52B /* SimplePickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C9A11A62EA0400F1C52B /* SimplePickerInputTableViewCell.m */; };
 		26CF9B541A627C0A00ABDD0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B531A627C0A00ABDD0B /* main.m */; };
 		26CF9B571A627C0A00ABDD0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B561A627C0A00ABDD0B /* AppDelegate.m */; };
 		26CF9B5A1A627C0A00ABDD0B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B591A627C0A00ABDD0B /* ViewController.m */; };
@@ -36,6 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2683C99A1A62E7F300F1C52B /* SBSettingItemMultiValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemMultiValue.h; path = SBTranslator/SBSettingItems/SBSettingItemMultiValue.h; sourceTree = "<group>"; };
+		2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemMultiValue.m; path = SBTranslator/SBSettingItems/SBSettingItemMultiValue.m; sourceTree = "<group>"; };
+		2683C99E1A62EA0400F1C52B /* PickerInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerInputTableViewCell.h; sourceTree = "<group>"; };
+		2683C99F1A62EA0400F1C52B /* PickerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerInputTableViewCell.m; sourceTree = "<group>"; };
+		2683C9A01A62EA0400F1C52B /* SimplePickerInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePickerInputTableViewCell.h; sourceTree = "<group>"; };
+		2683C9A11A62EA0400F1C52B /* SimplePickerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePickerInputTableViewCell.m; sourceTree = "<group>"; };
 		26CF9B4E1A627C0A00ABDD0B /* SettingBundleTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SettingBundleTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF9B521A627C0A00ABDD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26CF9B531A627C0A00ABDD0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,6 +95,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2683C99D1A62EA0400F1C52B /* PickerInputTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				2683C99E1A62EA0400F1C52B /* PickerInputTableViewCell.h */,
+				2683C99F1A62EA0400F1C52B /* PickerInputTableViewCell.m */,
+				2683C9A01A62EA0400F1C52B /* SimplePickerInputTableViewCell.h */,
+				2683C9A11A62EA0400F1C52B /* SimplePickerInputTableViewCell.m */,
+			);
+			name = PickerInputTableCell;
+			path = SBTranslator/PickerInputTableCell;
+			sourceTree = "<group>";
+		};
 		26CF9B451A627C0A00ABDD0B = {
 			isa = PBXGroup;
 			children = (
@@ -150,11 +171,12 @@
 		26CF9B7F1A627DE500ABDD0B /* SBTranslator */ = {
 			isa = PBXGroup;
 			children = (
+				2683C99D1A62EA0400F1C52B /* PickerInputTableCell */,
+				26CF9B891A6295C400ABDD0B /* SBSettingItems */,
 				26CF9B791A627C9700ABDD0B /* SBTranslatorViewController.h */,
 				26CF9B7A1A627C9700ABDD0B /* SBTranslatorViewController.m */,
 				26CF9B7C1A627DD600ABDD0B /* SBTranslator.h */,
 				26CF9B7D1A627DD600ABDD0B /* SBTranslator.m */,
-				26CF9B891A6295C400ABDD0B /* SBSettingItems */,
 				26CF9B901A62A84100ABDD0B /* SBSettingGroup.h */,
 				26CF9B911A62A84100ABDD0B /* SBSettingGroup.m */,
 			);
@@ -174,6 +196,8 @@
 				26CF9B8B1A6295F600ABDD0B /* SBSettingItemToggleSwitch.m */,
 				26CF9B8D1A62988100ABDD0B /* SBSettingItemSlider.h */,
 				26CF9B8E1A62988100ABDD0B /* SBSettingItemSlider.m */,
+				2683C99A1A62E7F300F1C52B /* SBSettingItemMultiValue.h */,
+				2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */,
 			);
 			name = SBSettingItems;
 			sourceTree = "<group>";
@@ -279,12 +303,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2683C9A21A62EA0400F1C52B /* PickerInputTableViewCell.m in Sources */,
 				26CF9B8C1A6295F600ABDD0B /* SBSettingItemToggleSwitch.m in Sources */,
 				26CF9B821A62843F00ABDD0B /* SBSettingItem.m in Sources */,
 				26CF9B5A1A627C0A00ABDD0B /* ViewController.m in Sources */,
+				2683C9A31A62EA0400F1C52B /* SimplePickerInputTableViewCell.m in Sources */,
 				26CF9B8F1A62988100ABDD0B /* SBSettingItemSlider.m in Sources */,
 				26CF9B7E1A627DD600ABDD0B /* SBTranslator.m in Sources */,
 				26CF9B571A627C0A00ABDD0B /* AppDelegate.m in Sources */,
+				2683C99C1A62E7F300F1C52B /* SBSettingItemMultiValue.m in Sources */,
 				26CF9B921A62A84100ABDD0B /* SBSettingGroup.m in Sources */,
 				26CF9B541A627C0A00ABDD0B /* main.m in Sources */,
 				26CF9B851A62852C00ABDD0B /* SBSettingItemGroup.m in Sources */,
@@ -482,6 +509,7 @@
 				26CF9B731A627C0A00ABDD0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		26CF9B741A627C0A00ABDD0B /* Build configuration list for PBXNativeTarget "SettingBundleTranslatorTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +518,7 @@
 				26CF9B761A627C0A00ABDD0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

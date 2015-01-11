@@ -68,6 +68,28 @@
 			<key>Key</key>
 			<string>name</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>MultiValueSelector</string>
+			<key>Key</key>
+			<string></string>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>Titles</key>
+			<array>
+				<string>t1</string>
+				<string>t2</string>
+				<string>t3</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>1</string>
+				<string>2</string>
+				<string>3</string>
+			</array>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

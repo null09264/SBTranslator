@@ -7,12 +7,16 @@
 //
 
 #import "SBTranslatorViewController.h"
+
+#import "SimplePickerInputTableViewCell.h"
+
 #import "SBSettingItemGroup.h"
 #import "SBSettingItemTextField.h"
 #import "SBSettingItemToggleSwitch.h"
 #import "SBSettingItemSlider.h"
+#import "SBSettingItemMultiValue.h"
 
-@interface SBTranslatorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface SBTranslatorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SimplePickerInputTableViewCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property SBTranslator *settingBundleTranslator;
@@ -125,6 +129,8 @@
         return [self getCellWithToggleSwitchItem:(SBSettingItemToggleSwitch *)item];
     } else if ([item isSliderItem]) {
         return [self getCellWithSliderItem:(SBSettingItemSlider *)item];
+    } else if ([item isMultiValueItem]) {
+        return [self getCellWithMultiValueItem:(SBSettingItemMultiValue *)item];
     } else {
         return [self getDefaultCell];
     }
@@ -139,6 +145,10 @@
     [cell.contentView addSubview:titleLabel];
     
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(cell.contentView.bounds.size.width * 0.3 + 10, 0, cell.contentView.frame.size.width * 0.7 - 15, cell.contentView.frame.size.height)];
+    textField.autocapitalizationType = item.autocapitalizationType;
+    textField.autocorrectionType = item.autocorrectionType;
+    textField.text = item.defaultValue;
+    textField.keyboardType = item.keyboardType;
     textField.delegate = self;
     [cell.contentView addSubview:textField];
     
@@ -172,6 +182,14 @@
     return cell;
 }
 
+- (UITableViewCell *) getCellWithMultiValueItem: (SBSettingItemMultiValue *) item {
+    SimplePickerInputTableViewCell *cell = [[SimplePickerInputTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    cell.textLabel.text = item.title;
+    cell.values = item.titles;
+    
+    return cell;
+}
+
 - (UITableViewCell *) getDefaultCell {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     return cell;
@@ -193,6 +211,13 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) textField.superview.superview];
     NSLog(@"textField: section: %ld --- row: %ld", indexPath.section, indexPath.row);
     return YES;
+}
+
+
+#pragma SimplePickerInputTableViewCell Delegate
+- (void)tableViewCell:(SimplePickerInputTableViewCell *)cell didEndEditingWithValue:(NSString *)value {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSLog(@"slider: section: %ld --- row: %ld", indexPath.section, indexPath.row);
 }
 
 @end

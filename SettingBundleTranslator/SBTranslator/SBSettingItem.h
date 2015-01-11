@@ -22,5 +22,5 @@
 - (BOOL) isTextFieldItem;
 - (BOOL) isToggleSwitchItem;
 - (BOOL) isSliderItem;
-
+- (BOOL) isMultiValueItem;
 @end

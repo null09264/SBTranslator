@@ -11,6 +11,7 @@
 #import "SBSettingItemTextField.h"
 #import "SBSettingItemToggleSwitch.h"
 #import "SBSettingItemSlider.h"
+#import "SBSettingItemMultiValue.h"
 
 
 @implementation SBSettingItem
@@ -25,6 +26,8 @@
         return [[SBSettingItemToggleSwitch alloc]initWithDictionary:preferenceDictionary];
     } else if ([type isEqualToString:@"PSSliderSpecifier"]) {
         return [[SBSettingItemSlider alloc]initWithDictionary:preferenceDictionary];
+    } else if ([type isEqualToString:@"PSMultiValueSpecifier"]) {
+        return [[SBSettingItemMultiValue alloc]initWithDictionary:preferenceDictionary];
     } else {
         @throw [NSException exceptionWithName:@"UnknownTypeException" reason:@"Unknown Setting Item Type" userInfo:nil];
     }
@@ -44,6 +47,10 @@
 
 - (BOOL) isSliderItem {
     return [self.type isEqualToString:@"PSSliderSpecifier"];
+}
+
+- (BOOL) isMultiValueItem {
+    return [self.type isEqualToString:@"PSMultiValueSpecifier"];
 }
 
 @end
