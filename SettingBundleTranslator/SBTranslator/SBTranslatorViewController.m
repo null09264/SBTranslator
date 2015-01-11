@@ -12,7 +12,7 @@
 #import "SBSettingItemToggleSwitch.h"
 #import "SBSettingItemSlider.h"
 
-@interface SBTranslatorViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface SBTranslatorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property SBTranslator *settingBundleTranslator;
@@ -132,8 +132,16 @@
 
 - (UITableViewCell *) getCellWithTextFieldItem: (SBSettingItemTextField *)item {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", item.title];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.3, cell.contentView.frame.size.height)];
+    titleLabel.text = item.title;
+    [cell.contentView addSubview:titleLabel];
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(cell.contentView.bounds.size.width * 0.3 + 10, 0, cell.contentView.frame.size.width * 0.7 - 15, cell.contentView.frame.size.height)];
+    textField.delegate = self;
+    [cell.contentView addSubview:textField];
+    
     return cell;
 }
 
@@ -177,6 +185,14 @@
 - (void) sliderValueChanged: (UISlider *) sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) sender.superview.superview];
     NSLog(@"slider: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+}
+
+#pragma UITextField Delegate
+-(BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) textField.superview.superview];
+    NSLog(@"textField: section: %ld --- row: %ld", indexPath.section, indexPath.row);
+    return YES;
 }
 
 @end
