@@ -8,7 +8,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Group One</string>
+			<string>第一组</string>
 		</dict>
 		<dict>
 			<key>AutocapitalizationType</key>
@@ -16,7 +16,7 @@
 			<key>AutocorrectionType</key>
 			<string>No</string>
 			<key>DefaultValue</key>
-			<string>OK</string>
+			<string>我是第一组</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>Key</key>
@@ -24,7 +24,7 @@
 			<key>KeyboardType</key>
 			<string>Alphabet</string>
 			<key>Title</key>
-			<string>Name</string>
+			<string>名字</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 		</dict>
@@ -34,7 +34,7 @@
 			<key>Key</key>
 			<string>enabled_preference</string>
 			<key>Title</key>
-			<string>Enabled</string>
+			<string>启用</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -58,15 +58,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Group Two</string>
+			<string>第二组</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>DefaultValue</key>
-			<string>default</string>
+			<string>我是第二组</string>
 			<key>Title</key>
-			<string>Name</string>
+			<string>名字</string>
 			<key>Key</key>
 			<string>name</string>
 		</dict>
@@ -74,16 +74,16 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>MultiValueSelector</string>
+			<string>选择器</string>
 			<key>Key</key>
 			<string>multi_value</string>
 			<key>DefaultValue</key>
 			<string>2</string>
 			<key>Titles</key>
 			<array>
-				<string>t1</string>
-				<string>t2</string>
-				<string>t3</string>
+				<string>选项A</string>
+				<string>选项B</string>
+				<string>选项C</string>
 			</array>
 			<key>Values</key>
 			<array>
@@ -91,6 +91,24 @@
 				<string>2</string>
 				<string>3</string>
 			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>第三组就只有一个Slider</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string>slider_group_3</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>MinimumValue</key>
+			<integer>0</integer>
+			<key>MaximumValue</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>StringsTable</key>

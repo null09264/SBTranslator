@@ -27,6 +27,7 @@
 - (void) updateSettingItems {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings.bundle/Root" ofType:@"plist"];
     NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSLog(@"%@", settings);
     self.settingGroups = [self getItemsFromDictionaryArray:[settings objectForKey:@"PreferenceSpecifiers"]];
 }
 
