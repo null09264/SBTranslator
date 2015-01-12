@@ -23,4 +23,6 @@
 - (BOOL) isToggleSwitchItem;
 - (BOOL) isSliderItem;
 - (BOOL) isMultiValueItem;
+- (BOOL) isTitleItem;
+
 @end

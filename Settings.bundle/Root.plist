@@ -110,6 +110,24 @@
 			<key>MaximumValue</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Hi</string>
+			<key>Key</key>
+			<string>ad</string>
+			<key>DefaultValue</key>
+			<string>1</string>
+			<key>Values</key>
+			<array>
+				<string>1</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>T1</string>
+			</array>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

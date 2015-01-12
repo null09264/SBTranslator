@@ -15,6 +15,7 @@
 #import "SBSettingItemToggleSwitch.h"
 #import "SBSettingItemSlider.h"
 #import "SBSettingItemMultiValue.h"
+#import "SBSettingItemTitle.h"
 
 @interface SBTranslatorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SimplePickerInputTableViewCellDelegate>
 
@@ -133,6 +134,8 @@
         return [self getCellWithSliderItem:(SBSettingItemSlider *)item];
     } else if ([item isMultiValueItem]) {
         return [self getCellWithMultiValueItem:(SBSettingItemMultiValue *)item];
+    } else if ([item isTitleItem]) {
+        return [self getCellWithTitleItem:(SBSettingItemTitle *)item];
     } else {
         return [self getDefaultCell];
     }
@@ -196,6 +199,31 @@
     return cell;
 }
 
+- (UITableViewCell *) getCellWithTitleItem: (SBSettingItemTitle *)item {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, cell.contentView.frame.size.width * 0.3, cell.contentView.frame.size.height)];
+    titleLabel.text = item.title;
+    [cell.contentView addSubview:titleLabel];
+    
+    UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.contentView.bounds.size.width * 0.3 + 10, 0, cell.contentView.frame.size.width * 0.7 - 25, cell.contentView.frame.size.height)];
+    valueLabel.textAlignment = NSTextAlignmentRight;
+    valueLabel.textColor = [UIColor grayColor];
+    NSString *valueString = [[NSUserDefaults standardUserDefaults] stringForKey:item.key];
+    
+    @try {
+        valueLabel.text = [item.titles objectAtIndex:[item.values indexOfObject:valueString]];
+    }
+    @catch (NSException *exception) {
+        valueLabel.text = @"";
+    }
+    
+    [cell.contentView addSubview:valueLabel];
+    
+    return cell;
+}
+
 - (UITableViewCell *) getDefaultCell {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     return cell;
@@ -238,6 +266,18 @@
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:item.key];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //keyboard observer

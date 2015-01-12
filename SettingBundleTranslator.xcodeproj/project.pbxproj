@@ -11,6 +11,7 @@
 		2683C99C1A62E7F300F1C52B /* SBSettingItemMultiValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */; };
 		2683C9A21A62EA0400F1C52B /* PickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C99F1A62EA0400F1C52B /* PickerInputTableViewCell.m */; };
 		2683C9A31A62EA0400F1C52B /* SimplePickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C9A11A62EA0400F1C52B /* SimplePickerInputTableViewCell.m */; };
+		2687597B1A63793F001E7788 /* SBSettingItemTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2687597A1A63793F001E7788 /* SBSettingItemTitle.m */; };
 		26CF9B541A627C0A00ABDD0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B531A627C0A00ABDD0B /* main.m */; };
 		26CF9B571A627C0A00ABDD0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B561A627C0A00ABDD0B /* AppDelegate.m */; };
 		26CF9B5A1A627C0A00ABDD0B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B591A627C0A00ABDD0B /* ViewController.m */; };
@@ -47,6 +48,8 @@
 		2683C99F1A62EA0400F1C52B /* PickerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerInputTableViewCell.m; sourceTree = "<group>"; };
 		2683C9A01A62EA0400F1C52B /* SimplePickerInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePickerInputTableViewCell.h; sourceTree = "<group>"; };
 		2683C9A11A62EA0400F1C52B /* SimplePickerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePickerInputTableViewCell.m; sourceTree = "<group>"; };
+		268759791A63793F001E7788 /* SBSettingItemTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemTitle.h; path = SBTranslator/SBSettingItems/SBSettingItemTitle.h; sourceTree = "<group>"; };
+		2687597A1A63793F001E7788 /* SBSettingItemTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemTitle.m; path = SBTranslator/SBSettingItems/SBSettingItemTitle.m; sourceTree = "<group>"; };
 		26CF9B4E1A627C0A00ABDD0B /* SettingBundleTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SettingBundleTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF9B521A627C0A00ABDD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26CF9B531A627C0A00ABDD0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				26CF9B8B1A6295F600ABDD0B /* SBSettingItemToggleSwitch.m */,
 				2683C99A1A62E7F300F1C52B /* SBSettingItemMultiValue.h */,
 				2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */,
+				268759791A63793F001E7788 /* SBSettingItemTitle.h */,
+				2687597A1A63793F001E7788 /* SBSettingItemTitle.m */,
 			);
 			name = SBSettingItems;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				26CF9B5A1A627C0A00ABDD0B /* ViewController.m in Sources */,
 				2683C9A31A62EA0400F1C52B /* SimplePickerInputTableViewCell.m in Sources */,
 				26CF9B7E1A627DD600ABDD0B /* SBTranslator.m in Sources */,
+				2687597B1A63793F001E7788 /* SBSettingItemTitle.m in Sources */,
 				26CF9B571A627C0A00ABDD0B /* AppDelegate.m in Sources */,
 				267958271A630770007B819C /* SBSettingItemSlider.m in Sources */,
 				2683C99C1A62E7F300F1C52B /* SBSettingItemMultiValue.m in Sources */,
