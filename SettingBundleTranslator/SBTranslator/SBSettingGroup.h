@@ -7,10 +7,21 @@
 //
 
 #import "SBSettingItemGroup.h"
+#import "SBSettingItemRadioGroup.h"
 
 @interface SBSettingGroup : NSObject
 
 @property SBSettingItemGroup *groupItem;
 @property NSMutableArray *otherItems;
+@property BOOL isRadioGroup;
+@property SBSettingItemRadioGroup *radioGroup;
+@property NSMutableArray *radioGroupElements;
 
+- (NSInteger) getNumberOfRows;
+- (NSString *) getTitle;
+- (NSString *) getFooterText;
+- (void) setRadioGroup:(SBSettingItemRadioGroup *)radioGroup;
+- (void) selectElementWithValue: (NSString *) value;
+- (SBSettingItem *) getItemAtIndex: (NSInteger) index;
+- (void) setRadioGroupItem:(SBSettingItemRadioGroup *)radioGroup;
 @end

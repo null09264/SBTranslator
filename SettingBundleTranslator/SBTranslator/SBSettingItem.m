@@ -13,7 +13,8 @@
 #import "SBSettingItemSlider.h"
 #import "SBSettingItemMultiValue.h"
 #import "SBSettingItemTitle.h"
-
+#import "SBSettingItemRadioGroup.h"
+#import "SBSettingItemRadioGroupElement.h"
 
 @implementation SBSettingItem
 
@@ -31,6 +32,10 @@
         return [[SBSettingItemMultiValue alloc]initWithDictionary:preferenceDictionary];
     } else if ([type isEqualToString:@"PSTitleValueSpecifier"]) {
         return [[SBSettingItemTitle alloc]initWithDictionary:preferenceDictionary];
+    } else if ([type isEqualToString:@"PSRadioGroupSpecifier"]) {
+        return [[SBSettingItemRadioGroup alloc]initWithDictionary:preferenceDictionary];
+    } else if ([type isEqualToString:@"PSRadioGroupElementSpecifier"]) {
+        return [[SBSettingItemRadioGroupElement alloc]initWithDictionary:preferenceDictionary];
     } else {
         @throw [NSException exceptionWithName:@"UnknownTypeException" reason:@"Unknown Setting Item Type" userInfo:nil];
     }
@@ -60,5 +65,12 @@
     return [self.type isEqualToString:@"PSTitleValueSpecifier"];
 }
 
+- (BOOL) isRadioGroupItem {
+    return [self.type isEqualToString:@"PSRadioGroupSpecifier"];
+}
+
+- (BOOL) isRadioGroupElementItem {
+    return [self.type isEqualToString:@"PSRadioGroupElementSpecifier"];
+}
 
 @end

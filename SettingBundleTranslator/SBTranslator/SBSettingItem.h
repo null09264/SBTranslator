@@ -24,5 +24,7 @@
 - (BOOL) isSliderItem;
 - (BOOL) isMultiValueItem;
 - (BOOL) isTitleItem;
+- (BOOL) isRadioGroupItem;
+- (BOOL) isRadioGroupElementItem;
 
 @end

@@ -18,7 +18,7 @@
         self.autocapitalizationType = [self getAutocapitalizationTypeFromDictionary:preferenceDictionary];
         self.autocorrectionType = [self getAutocorrectionTypeFromDictionary:preferenceDictionary];
         self.defaultValue = [preferenceDictionary objectForKey:@"DefaultValue"];
-        self.isSecure = [[preferenceDictionary objectForKey:@"Key"] integerValue];
+        self.isSecure = [preferenceDictionary objectForKey:@"IsSecure"];
         self.key = [preferenceDictionary objectForKey:@"Key"];
         self.keyboardType = [self getKeyboardTypeFromDictionary:preferenceDictionary];
         self.title = [preferenceDictionary objectForKey:@"Title"];

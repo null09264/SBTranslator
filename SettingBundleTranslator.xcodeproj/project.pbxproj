@@ -12,6 +12,8 @@
 		2683C9A21A62EA0400F1C52B /* PickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C99F1A62EA0400F1C52B /* PickerInputTableViewCell.m */; };
 		2683C9A31A62EA0400F1C52B /* SimplePickerInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2683C9A11A62EA0400F1C52B /* SimplePickerInputTableViewCell.m */; };
 		2687597B1A63793F001E7788 /* SBSettingItemTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2687597A1A63793F001E7788 /* SBSettingItemTitle.m */; };
+		2687597E1A63828B001E7788 /* SBSettingItemRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2687597D1A63828B001E7788 /* SBSettingItemRadioGroup.m */; };
+		268759811A638A39001E7788 /* SBSettingItemRadioGroupElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 268759801A638A39001E7788 /* SBSettingItemRadioGroupElement.m */; };
 		26CF9B541A627C0A00ABDD0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B531A627C0A00ABDD0B /* main.m */; };
 		26CF9B571A627C0A00ABDD0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B561A627C0A00ABDD0B /* AppDelegate.m */; };
 		26CF9B5A1A627C0A00ABDD0B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B591A627C0A00ABDD0B /* ViewController.m */; };
@@ -50,6 +52,10 @@
 		2683C9A11A62EA0400F1C52B /* SimplePickerInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePickerInputTableViewCell.m; sourceTree = "<group>"; };
 		268759791A63793F001E7788 /* SBSettingItemTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemTitle.h; path = SBTranslator/SBSettingItems/SBSettingItemTitle.h; sourceTree = "<group>"; };
 		2687597A1A63793F001E7788 /* SBSettingItemTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemTitle.m; path = SBTranslator/SBSettingItems/SBSettingItemTitle.m; sourceTree = "<group>"; };
+		2687597C1A63828B001E7788 /* SBSettingItemRadioGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemRadioGroup.h; path = SBTranslator/SBSettingItems/SBSettingItemRadioGroup.h; sourceTree = "<group>"; };
+		2687597D1A63828B001E7788 /* SBSettingItemRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemRadioGroup.m; path = SBTranslator/SBSettingItems/SBSettingItemRadioGroup.m; sourceTree = "<group>"; };
+		2687597F1A638A39001E7788 /* SBSettingItemRadioGroupElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemRadioGroupElement.h; path = SBTranslator/SBSettingItems/SBSettingItemRadioGroupElement.h; sourceTree = "<group>"; };
+		268759801A638A39001E7788 /* SBSettingItemRadioGroupElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemRadioGroupElement.m; path = SBTranslator/SBSettingItems/SBSettingItemRadioGroupElement.m; sourceTree = "<group>"; };
 		26CF9B4E1A627C0A00ABDD0B /* SettingBundleTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SettingBundleTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF9B521A627C0A00ABDD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26CF9B531A627C0A00ABDD0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -176,12 +182,14 @@
 			children = (
 				2683C99D1A62EA0400F1C52B /* PickerInputTableCell */,
 				26CF9B891A6295C400ABDD0B /* SBSettingItems */,
-				26CF9B791A627C9700ABDD0B /* SBTranslatorViewController.h */,
-				26CF9B7A1A627C9700ABDD0B /* SBTranslatorViewController.m */,
-				26CF9B7C1A627DD600ABDD0B /* SBTranslator.h */,
-				26CF9B7D1A627DD600ABDD0B /* SBTranslator.m */,
+				26CF9B801A62843F00ABDD0B /* SBSettingItem.h */,
+				26CF9B811A62843F00ABDD0B /* SBSettingItem.m */,
 				26CF9B901A62A84100ABDD0B /* SBSettingGroup.h */,
 				26CF9B911A62A84100ABDD0B /* SBSettingGroup.m */,
+				26CF9B7C1A627DD600ABDD0B /* SBTranslator.h */,
+				26CF9B7D1A627DD600ABDD0B /* SBTranslator.m */,
+				26CF9B791A627C9700ABDD0B /* SBTranslatorViewController.h */,
+				26CF9B7A1A627C9700ABDD0B /* SBTranslatorViewController.m */,
 			);
 			name = SBTranslator;
 			sourceTree = "<group>";
@@ -189,10 +197,12 @@
 		26CF9B891A6295C400ABDD0B /* SBSettingItems */ = {
 			isa = PBXGroup;
 			children = (
-				26CF9B801A62843F00ABDD0B /* SBSettingItem.h */,
-				26CF9B811A62843F00ABDD0B /* SBSettingItem.m */,
 				26CF9B831A62852C00ABDD0B /* SBSettingItemGroup.h */,
 				26CF9B841A62852C00ABDD0B /* SBSettingItemGroup.m */,
+				2687597C1A63828B001E7788 /* SBSettingItemRadioGroup.h */,
+				2687597D1A63828B001E7788 /* SBSettingItemRadioGroup.m */,
+				2687597F1A638A39001E7788 /* SBSettingItemRadioGroupElement.h */,
+				268759801A638A39001E7788 /* SBSettingItemRadioGroupElement.m */,
 				267958251A630770007B819C /* SBSettingItemSlider.h */,
 				267958261A630770007B819C /* SBSettingItemSlider.m */,
 				26CF9B861A62917500ABDD0B /* SBSettingItemTextField.h */,
@@ -310,6 +320,7 @@
 			files = (
 				2683C9A21A62EA0400F1C52B /* PickerInputTableViewCell.m in Sources */,
 				26CF9B8C1A6295F600ABDD0B /* SBSettingItemToggleSwitch.m in Sources */,
+				2687597E1A63828B001E7788 /* SBSettingItemRadioGroup.m in Sources */,
 				26CF9B821A62843F00ABDD0B /* SBSettingItem.m in Sources */,
 				26CF9B5A1A627C0A00ABDD0B /* ViewController.m in Sources */,
 				2683C9A31A62EA0400F1C52B /* SimplePickerInputTableViewCell.m in Sources */,
@@ -321,6 +332,7 @@
 				26CF9B921A62A84100ABDD0B /* SBSettingGroup.m in Sources */,
 				26CF9B541A627C0A00ABDD0B /* main.m in Sources */,
 				26CF9B851A62852C00ABDD0B /* SBSettingItemGroup.m in Sources */,
+				268759811A638A39001E7788 /* SBSettingItemRadioGroupElement.m in Sources */,
 				26CF9B881A62917500ABDD0B /* SBSettingItemTextField.m in Sources */,
 				26CF9B7B1A627C9700ABDD0B /* SBTranslatorViewController.m in Sources */,
 			);

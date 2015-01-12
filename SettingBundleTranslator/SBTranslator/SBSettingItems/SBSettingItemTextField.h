@@ -14,7 +14,7 @@
 @property UITextAutocapitalizationType autocapitalizationType;
 @property UITextAutocorrectionType autocorrectionType;
 @property NSString *defaultValue;
-@property NSInteger isSecure;
+@property BOOL isSecure;
 @property NSString *key;
 @property UIKeyboardType keyboardType;
 @property NSString *title;

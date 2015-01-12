@@ -16,6 +16,7 @@
 #import "SBSettingItemSlider.h"
 #import "SBSettingItemMultiValue.h"
 #import "SBSettingItemTitle.h"
+#import "SBSettingItemRadioGroupElement.h"
 
 @interface SBTranslatorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SimplePickerInputTableViewCellDelegate>
 
@@ -31,7 +32,7 @@
     
     if (self) {
         self.settingBundleTranslator = [[SBTranslator alloc]init];
-        [SBTranslator registerDefaultsFromSettingsBundle];
+        self.title = @"Settings";
         
         self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         self.tableView.delegate = self;
@@ -73,64 +74,43 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SBSettingItem *item = [self.settingBundleTranslator getItemAtIndexPath:indexPath];
-    return [self getCellWithItem:item];
+    SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:indexPath.section];
+    return [self getCellWithItem:item andGroup:group];
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:section];
-    return group.groupItem.title;
+    return [group getTitle];
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:section];
-    return group.groupItem.footerText;
+    return [group getFooterText];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - Table view delegate
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:indexPath.section];
+    if (group.isRadioGroup) {
+        if (indexPath.row < group.radioGroupElements.count) {
+            SBSettingItemRadioGroupElement* element = (SBSettingItemRadioGroupElement*) [self.settingBundleTranslator getItemAtIndexPath:indexPath];
+            [group selectElementWithValue: element.value];
+            [tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+            [[NSUserDefaults standardUserDefaults] setObject:element.value forKey:group.radioGroup.key];
+        }
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
-- (UITableViewCell *) getCellWithItem: (SBSettingItem *)item {
+
+
+- (UITableViewCell *) getCellWithItem: (SBSettingItem *)item andGroup: (SBSettingGroup *) group{
     if ([item isTextFieldItem]) {
         return [self getCellWithTextFieldItem:(SBSettingItemTextField *)item];
     } else if ([item isToggleSwitchItem]) {
@@ -141,6 +121,8 @@
         return [self getCellWithMultiValueItem:(SBSettingItemMultiValue *)item];
     } else if ([item isTitleItem]) {
         return [self getCellWithTitleItem:(SBSettingItemTitle *)item];
+    } else if ([item isRadioGroupElementItem]) {
+        return [self getCellWithGroupRadioElementItem:(SBSettingItemRadioGroupElement *)item andGroup: (SBSettingGroup *) group];
     } else {
         return [self getDefaultCell];
     }
@@ -160,6 +142,7 @@
     textField.autocorrectionType = item.autocorrectionType;
     textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:item.key];
     textField.keyboardType = item.keyboardType;
+    [textField setSecureTextEntry: item.isSecure];
     textField.delegate = self;
     [cell.contentView addSubview:textField];
     
@@ -225,6 +208,17 @@
     }
     
     [cell.contentView addSubview:valueLabel];
+    
+    return cell;
+}
+
+- (UITableViewCell *) getCellWithGroupRadioElementItem: (SBSettingItemRadioGroupElement *) item andGroup: (SBSettingGroup *) group{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", item.title];
+    
+    if (item.isSelected) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     
     return cell;
 }

@@ -19,6 +19,7 @@
         self.key = [preferenceDictionary objectForKey:@"Key"];
         self.title = [preferenceDictionary objectForKey:@"Title"];
         self.titles = [preferenceDictionary objectForKey:@"Titles"];
+        self.shortTitles = [preferenceDictionary objectForKey:@"ShortTitles"];
         self.values = [preferenceDictionary objectForKey:@"Values"];
         self.type = @"PSMultiValueSpecifier";
     }

@@ -18,6 +18,7 @@
     self = [super init];
     
     if (self) {
+        [SBTranslator registerDefaultsFromSettingsBundle];
         [self updateSettingItems];
     }
     
@@ -27,7 +28,6 @@
 - (void) updateSettingItems {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings.bundle/Root" ofType:@"plist"];
     NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    NSLog(@"%@", settings);
     self.settingGroups = [self getItemsFromDictionaryArray:[settings objectForKey:@"PreferenceSpecifiers"]];
 }
 
@@ -46,6 +46,12 @@
             currentGroup = [[SBSettingGroup alloc]init];
             currentGroup.groupItem = (SBSettingItemGroup *)currentItem;
             [groups addObject:currentGroup];
+        } else if ([currentItem isRadioGroupItem]) {
+            currentGroup = [[SBSettingGroup alloc]init];
+            [currentGroup setRadioGroupItem:(SBSettingItemRadioGroup *)currentItem];
+            NSString *currentValue = [[NSUserDefaults standardUserDefaults] objectForKey:currentGroup.radioGroup.key];
+            [currentGroup selectElementWithValue:currentValue];
+            [groups addObject:currentGroup];
         } else {
             [currentGroup.otherItems addObject:currentItem];
         }
@@ -60,12 +66,12 @@
 
 - (NSInteger) getNumberOfRowForGroupAtIndex: (NSInteger) index {
     SBSettingGroup *group = [self.settingGroups objectAtIndex:index];
-    return group.otherItems.count;
+    return [group getNumberOfRows];
 }
 
 - (SBSettingItem*) getItemAtIndexPath: (NSIndexPath *)indexPath {
     SBSettingGroup *group = [self.settingGroups objectAtIndex:indexPath.section];
-    return [group.otherItems objectAtIndex:indexPath.row];
+    return [group getItemAtIndex:indexPath.row];
 }
 
 + (void)registerDefaultsFromSettingsBundle {
@@ -82,7 +88,10 @@
     for(NSDictionary *prefSpecification in preferences) {
         NSString *key=[prefSpecification objectForKey:@"Key"];
         if(key) {
-            [defaultsToRegister setObject:[prefSpecification objectForKey:@"DefaultValue"] forKey:key];
+            id object = [prefSpecification objectForKey:@"DefaultValue"];
+            if (object) {
+                [defaultsToRegister setObject: object forKey:key];
+            }
         }
     }
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];

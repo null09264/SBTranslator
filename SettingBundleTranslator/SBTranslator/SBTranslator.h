@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SBSettingItem.h"
+#import "SBSettingItemRadioGroup.h"
 #import "SBSettingGroup.h"
 
 @interface SBTranslator : NSObject

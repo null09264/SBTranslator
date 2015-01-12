@@ -20,7 +20,7 @@
 			<key>DefaultValue</key>
 			<string>我是第一组</string>
 			<key>IsSecure</key>
-			<false/>
+			<true/>
 			<key>Key</key>
 			<string>name_preference</string>
 			<key>KeyboardType</key>
@@ -87,6 +87,12 @@
 				<string>选项B</string>
 				<string>选项C</string>
 			</array>
+			<key>ShortTitles</key>
+			<array>
+				<string>A</string>
+				<string>B</string>
+				<string>C</string>
+			</array>
 			<key>Values</key>
 			<array>
 				<string>1</string>
@@ -129,6 +135,38 @@
 			<array>
 				<string>T1</string>
 			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSRadioGroupSpecifier</string>
+			<key>Title</key>
+			<string>Radio Group</string>
+			<key>FooterText</key>
+			<string>Only one row is allowed to be selected.</string>
+			<key>Key</key>
+			<string>radio</string>
+			<key>Values</key>
+			<array>
+				<string>1</string>
+				<string>2</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>A</string>
+				<string>B</string>
+			</array>
+			<key>DefaultValue</key>
+			<string>2</string>
+			<key>DisplaySortedByTitle</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Text</string>
+			<key>Key</key>
+			<string>textid</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

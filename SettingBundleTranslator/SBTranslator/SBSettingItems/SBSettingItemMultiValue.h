@@ -14,6 +14,7 @@
 @property NSString *key;
 @property NSString *title;
 @property NSArray *titles;
+@property NSArray *shortTitles;
 @property NSArray *values;
 
 @end
