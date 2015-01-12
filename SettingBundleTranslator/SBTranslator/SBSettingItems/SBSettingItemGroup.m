@@ -16,6 +16,7 @@
     if (self) {
         assert([[preferenceDictionary objectForKey:@"Type"] isEqualToString:@"PSGroupSpecifier"]);
         self.title = [preferenceDictionary objectForKey:@"Title"];
+        self.footerText = [preferenceDictionary objectForKey:@"FooterText"];
         self.type = @"PSGroupSpecifier";
     }
     

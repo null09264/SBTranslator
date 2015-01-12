@@ -9,6 +9,8 @@
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>第一组</string>
+			<key>FooterText</key>
+			<string>Hello</string>
 		</dict>
 		<dict>
 			<key>AutocapitalizationType</key>

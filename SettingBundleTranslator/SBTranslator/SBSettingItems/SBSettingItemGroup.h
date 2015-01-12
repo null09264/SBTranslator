@@ -11,5 +11,6 @@
 @interface SBSettingItemGroup : SBSettingItem
 
 @property NSString *title;
+@property NSString *footerText;
 
 @end

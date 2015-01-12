@@ -81,6 +81,11 @@
     return group.groupItem.title;
 }
 
+- (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:section];
+    return group.groupItem.footerText;
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
