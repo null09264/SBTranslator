@@ -1,8 +1,8 @@
-SettingBundleTranslator
+SBTranslator
 ===================================
 
-This library allows you to build your in-app setting page with only 3 lines of code.
-It will read from your Settings.bundle and construct everything else automatically.
+This library allows you to build your in-app setting page with only 3 lines of code. 
+It will read from your Settings.bundle and construct everything else automatically. 
 
 
 
