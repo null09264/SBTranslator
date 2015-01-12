@@ -122,7 +122,7 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Hi</string>
+			<string>打个招呼吧</string>
 			<key>Key</key>
 			<string>ad</string>
 			<key>DefaultValue</key>
@@ -133,16 +133,16 @@
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>T1</string>
+				<string>Hello</string>
 			</array>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSRadioGroupSpecifier</string>
 			<key>Title</key>
-			<string>Radio Group</string>
+			<string>第四组只能选一个</string>
 			<key>FooterText</key>
-			<string>Only one row is allowed to be selected.</string>
+			<string>都说了只能选一个</string>
 			<key>Key</key>
 			<string>radio</string>
 			<key>Values</key>
@@ -152,8 +152,8 @@
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>A</string>
-				<string>B</string>
+				<string>甲</string>
+				<string>乙</string>
 			</array>
 			<key>DefaultValue</key>
 			<string>2</string>
@@ -162,11 +162,17 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
+			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Text</string>
-			<key>Key</key>
-			<string>textid</string>
+			<string>最后一组</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>熊孩子</string>
+			<key>File</key>
+			<string>Child</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

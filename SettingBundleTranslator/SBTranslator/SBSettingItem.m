@@ -15,6 +15,7 @@
 #import "SBSettingItemTitle.h"
 #import "SBSettingItemRadioGroup.h"
 #import "SBSettingItemRadioGroupElement.h"
+#import "SBSettingItemChildPane.h"
 
 @implementation SBSettingItem
 
@@ -36,6 +37,8 @@
         return [[SBSettingItemRadioGroup alloc]initWithDictionary:preferenceDictionary];
     } else if ([type isEqualToString:@"PSRadioGroupElementSpecifier"]) {
         return [[SBSettingItemRadioGroupElement alloc]initWithDictionary:preferenceDictionary];
+    } else if ([type isEqualToString:@"PSChildPaneSpecifier"]) {
+        return [[SBSettingItemChildPane alloc]initWithDictionary:preferenceDictionary];
     } else {
         @throw [NSException exceptionWithName:@"UnknownTypeException" reason:@"Unknown Setting Item Type" userInfo:nil];
     }
@@ -72,5 +75,10 @@
 - (BOOL) isRadioGroupElementItem {
     return [self.type isEqualToString:@"PSRadioGroupElementSpecifier"];
 }
+
+- (BOOL) isChildPaneItem {
+    return [self.type isEqualToString:@"PSChildPaneSpecifier"];
+}
+
 
 @end

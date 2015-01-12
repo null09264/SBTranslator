@@ -14,6 +14,7 @@
 		2687597B1A63793F001E7788 /* SBSettingItemTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2687597A1A63793F001E7788 /* SBSettingItemTitle.m */; };
 		2687597E1A63828B001E7788 /* SBSettingItemRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2687597D1A63828B001E7788 /* SBSettingItemRadioGroup.m */; };
 		268759811A638A39001E7788 /* SBSettingItemRadioGroupElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 268759801A638A39001E7788 /* SBSettingItemRadioGroupElement.m */; };
+		268759861A63A78D001E7788 /* SBSettingItemChildPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 268759851A63A78D001E7788 /* SBSettingItemChildPane.m */; };
 		26CF9B541A627C0A00ABDD0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B531A627C0A00ABDD0B /* main.m */; };
 		26CF9B571A627C0A00ABDD0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B561A627C0A00ABDD0B /* AppDelegate.m */; };
 		26CF9B5A1A627C0A00ABDD0B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF9B591A627C0A00ABDD0B /* ViewController.m */; };
@@ -56,6 +57,8 @@
 		2687597D1A63828B001E7788 /* SBSettingItemRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemRadioGroup.m; path = SBTranslator/SBSettingItems/SBSettingItemRadioGroup.m; sourceTree = "<group>"; };
 		2687597F1A638A39001E7788 /* SBSettingItemRadioGroupElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemRadioGroupElement.h; path = SBTranslator/SBSettingItems/SBSettingItemRadioGroupElement.h; sourceTree = "<group>"; };
 		268759801A638A39001E7788 /* SBSettingItemRadioGroupElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemRadioGroupElement.m; path = SBTranslator/SBSettingItems/SBSettingItemRadioGroupElement.m; sourceTree = "<group>"; };
+		268759841A63A78D001E7788 /* SBSettingItemChildPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBSettingItemChildPane.h; path = SBTranslator/SBSettingItems/SBSettingItemChildPane.h; sourceTree = "<group>"; };
+		268759851A63A78D001E7788 /* SBSettingItemChildPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBSettingItemChildPane.m; path = SBTranslator/SBSettingItems/SBSettingItemChildPane.m; sourceTree = "<group>"; };
 		26CF9B4E1A627C0A00ABDD0B /* SettingBundleTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SettingBundleTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF9B521A627C0A00ABDD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26CF9B531A627C0A00ABDD0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				2683C99B1A62E7F300F1C52B /* SBSettingItemMultiValue.m */,
 				268759791A63793F001E7788 /* SBSettingItemTitle.h */,
 				2687597A1A63793F001E7788 /* SBSettingItemTitle.m */,
+				268759841A63A78D001E7788 /* SBSettingItemChildPane.h */,
+				268759851A63A78D001E7788 /* SBSettingItemChildPane.m */,
 			);
 			name = SBSettingItems;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				2687597B1A63793F001E7788 /* SBSettingItemTitle.m in Sources */,
 				26CF9B571A627C0A00ABDD0B /* AppDelegate.m in Sources */,
 				267958271A630770007B819C /* SBSettingItemSlider.m in Sources */,
+				268759861A63A78D001E7788 /* SBSettingItemChildPane.m in Sources */,
 				2683C99C1A62E7F300F1C52B /* SBSettingItemMultiValue.m in Sources */,
 				26CF9B921A62A84100ABDD0B /* SBSettingGroup.m in Sources */,
 				26CF9B541A627C0A00ABDD0B /* main.m in Sources */,

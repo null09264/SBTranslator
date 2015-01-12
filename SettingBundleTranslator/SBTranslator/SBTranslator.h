@@ -15,7 +15,9 @@
 
 @property NSArray *settingGroups;
 
--(instancetype) init;
+- (instancetype) init;
+- (instancetype) initWithFile: (NSString *) fileName;
+
 - (NSInteger) getNumberOfGroups;
 - (NSInteger) getNumberOfRowForGroupAtIndex: (NSInteger) index;
 - (SBSettingItem*) getItemAtIndexPath: (NSIndexPath *)indexPath;

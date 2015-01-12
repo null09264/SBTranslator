@@ -19,14 +19,25 @@
     
     if (self) {
         [SBTranslator registerDefaultsFromSettingsBundle];
-        [self updateSettingItems];
+        [self updateSettingItemsWithFile:@"Root"];
     }
     
     return self;
 }
 
-- (void) updateSettingItems {
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings.bundle/Root" ofType:@"plist"];
+- (instancetype) initWithFile: (NSString *) fileName {
+    self = [super init];
+    
+    if (self) {
+        [SBTranslator registerDefaultsFromSettingsBundle];
+        [self updateSettingItemsWithFile:fileName];
+    }
+    
+    return self;
+}
+
+- (void) updateSettingItemsWithFile: (NSString *) fileName {
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Settings.bundle/%@", fileName] ofType:@"plist"];
     NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     self.settingGroups = [self getItemsFromDictionaryArray:[settings objectForKey:@"PreferenceSpecifiers"]];
 }

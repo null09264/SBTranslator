@@ -26,5 +26,6 @@
 - (BOOL) isTitleItem;
 - (BOOL) isRadioGroupItem;
 - (BOOL) isRadioGroupElementItem;
+- (BOOL) isChildPaneItem;
 
 @end

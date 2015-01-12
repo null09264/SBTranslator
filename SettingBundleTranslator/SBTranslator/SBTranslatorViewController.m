@@ -17,6 +17,7 @@
 #import "SBSettingItemMultiValue.h"
 #import "SBSettingItemTitle.h"
 #import "SBSettingItemRadioGroupElement.h"
+#import "SBSettingItemChildPane.h"
 
 @interface SBTranslatorViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SimplePickerInputTableViewCellDelegate>
 
@@ -32,12 +33,17 @@
     
     if (self) {
         self.settingBundleTranslator = [[SBTranslator alloc]init];
-        self.title = @"Settings";
-        
-        self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        [self.view addSubview:self.tableView];
+        self.title = @"Settings";        
+    }
+    
+    return self;
+}
+
+- (instancetype) initWithFileName: (NSString *) fileName {
+    self = [super init];
+    
+    if (self) {
+        self.settingBundleTranslator = [[SBTranslator alloc] initWithFile:fileName];
     }
     
     return self;
@@ -45,20 +51,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adjustLayoutWithKeyboardFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shrinkLayoutWithKeyboardFrame:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandLayoutWithKeyboardFrame:) name:UIKeyboardWillHideNotification object:nil];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -92,13 +92,21 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:indexPath.section];
-    if (group.isRadioGroup) {
-        if (indexPath.row < group.radioGroupElements.count) {
-            SBSettingItemRadioGroupElement* element = (SBSettingItemRadioGroupElement*) [self.settingBundleTranslator getItemAtIndexPath:indexPath];
-            [group selectElementWithValue: element.value];
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
-            [[NSUserDefaults standardUserDefaults] setObject:element.value forKey:group.radioGroup.key];
+    SBSettingItem *item = [self.settingBundleTranslator getItemAtIndexPath:indexPath];
+    if ([item isChildPaneItem]) {
+        SBSettingItemChildPane *childPaneItem = (SBSettingItemChildPane *)item;
+        SBTranslatorViewController *controller = [[SBTranslatorViewController alloc]initWithFileName: childPaneItem.file];
+        controller.title = childPaneItem.title;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else {
+        SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:indexPath.section];
+        if (group.isRadioGroup) {
+            if (indexPath.row < group.radioGroupElements.count) {
+                SBSettingItemRadioGroupElement* element = (SBSettingItemRadioGroupElement*) [self.settingBundleTranslator getItemAtIndexPath:indexPath];
+                [group selectElementWithValue: element.value];
+                [tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+                [[NSUserDefaults standardUserDefaults] setObject:element.value forKey:group.radioGroup.key];
+            }
         }
     }
 }
@@ -123,6 +131,8 @@
         return [self getCellWithTitleItem:(SBSettingItemTitle *)item];
     } else if ([item isRadioGroupElementItem]) {
         return [self getCellWithGroupRadioElementItem:(SBSettingItemRadioGroupElement *)item andGroup: (SBSettingGroup *) group];
+    } else if ([item isChildPaneItem]) {
+        return [self getCellWithChildPaneItem:(SBSettingItemChildPane *)item];
     } else {
         return [self getDefaultCell];
     }
@@ -223,6 +233,13 @@
     return cell;
 }
 
+- (UITableViewCell *) getCellWithChildPaneItem: (SBSettingItemChildPane *) item {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    cell.textLabel.text = item.title;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
 - (UITableViewCell *) getDefaultCell {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     return cell;
@@ -265,15 +282,6 @@
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:item.key];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
-
-
-
-
-
-
-
-
 
 
 
