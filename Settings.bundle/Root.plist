@@ -8,7 +8,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>第一组</string>
+			<string>Group</string>
 			<key>FooterText</key>
 			<string>Hello</string>
 		</dict>

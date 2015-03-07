@@ -80,7 +80,7 @@
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     SBSettingGroup *group = [self.settingBundleTranslator.settingGroups objectAtIndex:section];
-    return [group getTitle];
+    return [SBTranslatorViewController getLocalizedString:[group getTitle]];
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
@@ -333,5 +333,9 @@
         self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     }];
     
+}
+
++ (NSString *) getLocalizedString: (NSString *) str {
+    return NSLocalizedStringFromTable(str, @"Settings.bundle/Root", nil);
 }
 @end
