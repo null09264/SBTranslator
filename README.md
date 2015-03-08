@@ -10,6 +10,7 @@ It will read from your Settings.bundle and construct everything else automatical
 
 ######Import:
 <pre><code>#import SBTranslatorViewController.h</code></pre>
+Note: You need to include SBTranslatorViewController.h in your bridging header if you are using swift
 
 ######Initialize:
 <pre><code>SBTranslatorViewController *settingViewController = [[SBTranslatorViewController alloc]init];</code></pre>
