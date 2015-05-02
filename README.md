@@ -17,6 +17,6 @@ Note: You need to include SBTranslatorViewController.h in your bridging header i
 
 ######Present:
 <pre><code>[self.navigationController pushViewController:settingViewController animated:YES];</code></pre>
-
+(Here I use UINavigationController, but of course you can take another way)
 
 ###done!
